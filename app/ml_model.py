@@ -1,7 +1,7 @@
 # backend/app/ml_model.py
 import joblib
 import numpy as np
-MODEL_PATH = "../../ml/model.joblib"  # if you placed model under ml/
+MODEL_PATH = "./model.joblib"  # if you placed model under ml/
 
 def load_model():
     model = joblib.load(MODEL_PATH)
