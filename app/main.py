@@ -1,5 +1,6 @@
 # backend/app/main.py
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from soil_clients import get_soilgrids_props, get_bhuvan_props
 from market_client import get_market_price
@@ -9,6 +10,14 @@ import uvicorn
 import os
 
 app = FastAPI(title="Crop Recommendation Backend (Prototype)")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 👈 allows all origins, you can restrict later
+    allow_credentials=True,
+    allow_methods=["*"],   # allow all HTTP methods (POST, GET, OPTIONS, etc.)
+    allow_headers=["*"],   # allow all headers
+)
 
 @app.get("/")
 def read_root():
